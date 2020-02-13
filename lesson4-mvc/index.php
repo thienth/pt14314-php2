@@ -2,6 +2,7 @@
 
 require_once './controllers/HomeController.php';
 require_once './controllers/ProductController.php';
+require_once './controllers/CategoryController.php';
 
 $url = isset($_GET['url']) == true ? $_GET['url'] : "/";
 
@@ -19,8 +20,8 @@ switch ($url) {
 		$ctr = new ProductController();
 		$ctr->detail();
 		break;
-	case 'danh-sach-sp':
-		$ctr = new ProductController();
+	case 'danh-sach-danh-muc':
+		$ctr = new CategoryController();
 		$ctr->list();
 		break;
 	
