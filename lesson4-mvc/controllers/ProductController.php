@@ -1,6 +1,7 @@
 <?php 
 
 require_once './models/Product.php';
+require_once './models/Category.php';
 class ProductController{
 	public function detail(){
 		echo "Trang chi tiet san pham";
@@ -22,7 +23,11 @@ class ProductController{
 
         header("location: " . BASE_URL . "?msg=Xóa không thành công!");
         die;
+    }
 
+    public function addForm(){
+	    $cates = Category::getAll();
+	    include_once './views/home/add-product.php';
     }
 }
 
