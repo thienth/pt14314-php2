@@ -25,6 +25,10 @@ switch ($url) {
 		$ctr = new CategoryController();
 		$ctr->list();
 		break;
+	case 'remove-product':
+		$ctr = new ProductController();
+		$ctr->remove();
+		break;
 	
 	default:
 		# code...
