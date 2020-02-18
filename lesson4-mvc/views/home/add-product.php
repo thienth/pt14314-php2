@@ -48,7 +48,7 @@
                 <div class="col-6">
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
-                            <img src="<?= BASE_URL . 'public/images/default-image.jpg'?>" class="img-fluid" id="img-preview">
+                            <img src="<?= DEFAULT_IMAGE ?>" class="img-fluid" id="img-preview">
                         </div>
                     </div>
                     <div class="form-group">
@@ -80,6 +80,10 @@
 <script>
     function encodeImageFileAsURL(element) {
         var file = element.files[0];
+        if(file === undefined){
+            $("#img-preview").attr("src", "<?= DEFAULT_IMAGE ?>");
+            return false;
+        }
         var reader = new FileReader();
         reader.onloadend = function() {
             $("#img-preview").attr("src", reader.result);
