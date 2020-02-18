@@ -46,10 +46,14 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="img-preview"></div>
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3">
+                            <img src="<?= BASE_URL . 'public/images/default-image.jpg'?>" class="img-fluid" id="img-preview">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="">Ảnh sản phẩm<span class="text-danger">*</span></label>
-                        <input type="file" name="image" class="form-control" >
+                        <input type="file" onchange="encodeImageFileAsURL(this)"  name="image" class="form-control" >
                     </div>
                     <div class="form-group">
                         <label for="">Số sao</label>
@@ -74,6 +78,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script>
+    function encodeImageFileAsURL(element) {
+        var file = element.files[0];
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            $("#img-preview").attr("src", reader.result);
+        }
+        reader.readAsDataURL(file);
+    }
     $(document).ready(function(){
 
     });
