@@ -101,7 +101,16 @@
             rules:{
                 name: {
                     required: true,
-                    minlength: 2
+                    minlength: 2,
+                    remote: {
+                        url: "<?= BASE_URL . 'check-product-name'?>",
+                        type: "post",
+                        data: {
+                            name: function() {
+                                return $( "input[name='name']" ).val();
+                            }
+                        }
+                    }
                 },
                 price: {
                     required: true,
@@ -124,7 +133,8 @@
             messages:{
                 name: {
                     required: "Nhập tên sản phẩm",
-                    minlength: "Tối thiểu 2 ký tự"
+                    minlength: "Tối thiểu 2 ký tự",
+                    remote: "Tên sản phẩm đã tồn tại, vui lòng chọn tên khác"
                 },
                 price: {
                     required: "Nhập giá sản phẩm",

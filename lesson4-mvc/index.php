@@ -29,6 +29,10 @@ switch ($url) {
 		$ctr = new ProductController();
 		$ctr->remove();
 		break;
+	case 'check-product-name':
+		$ctr = new ProductController();
+		$ctr->checkNameExisted();
+		break;
 	case 'add-product':
 		$ctr = new ProductController();
 		$ctr->addForm();

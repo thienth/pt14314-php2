@@ -29,6 +29,17 @@ class ProductController{
 	    $cates = Category::getAll();
 	    include_once './views/home/add-product.php';
     }
+
+    public function saveAdd(){
+	    // Thực hiện nhận dữ liệu từ form gửi lên sau đó lưu vào trong csdl của bản products
+    }
+
+    public function checkNameExisted(){
+	    $name = $_POST['name'];
+        $checkNameQuery = "select * from " . (new Product())->table . " where name = '$name'";
+        $data = Product::customQuery($checkNameQuery);
+	    echo count($data) == 0 ? "true" : "false";
+    }
 }
 
  ?>

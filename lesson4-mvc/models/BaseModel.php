@@ -32,5 +32,13 @@ class BaseModel{
             return false;
         }
     }
+
+    public static function customQuery($sql){
+        $model = new static();
+        $stmt = $model->connect->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($model));
+        return $data;
+    }
 }
 ?>
