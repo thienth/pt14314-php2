@@ -25,6 +25,18 @@ class BaseModel{
         return $data;
     }
 
+    public static function findOne($id){
+        $model = new static();
+        $sql = "select * from " . $model->table . " where id = $id";
+        $stmt = $model->connect->prepare($sql);
+        $stmt->execute();
+        $data = $stmt->fetchAll(PDO::FETCH_CLASS, get_class($model));
+        if(!$data){
+            return false;
+        }
+        return $data[0];
+    }
+
     public static function destroy($id){
 
         try{

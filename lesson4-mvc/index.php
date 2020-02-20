@@ -41,6 +41,14 @@ switch ($url) {
 		$ctr = new ProductController();
 		$ctr->addForm();
 		break;
+	case 'edit-product':
+		$ctr = new ProductController();
+		$ctr->editForm();
+		break;
+	case 'save-edit-product':
+		$ctr = new ProductController();
+		$ctr->saveEdit();
+		break;
 	
 	default:
 		# code...
