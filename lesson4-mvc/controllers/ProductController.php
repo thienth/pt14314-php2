@@ -31,7 +31,22 @@ class ProductController{
     }
 
     public function saveAdd(){
-	    // Thực hiện nhận dữ liệu từ form gửi lên sau đó lưu vào trong csdl của bản products
+	    $model = new Product();
+        // gán dữ liệu cho model
+        $model->fill($_POST);
+        // validate dữ liệu thêm 1 lần nữa bằng php => form
+        // lưu file ảnh
+        $image = $_FILES['image'];
+        $filename = "";
+        if($image['size'] > 0){
+            $filename = "public/images/" . uniqid() . '-' . $image['name'];
+            move_uploaded_file($image['tmp_name'], $filename);
+        }
+        $model->image = $filename;
+        // lưu dữ liệu với csdl
+        $model->insert();
+        header('location: ' . BASE_URL);
+        die;
     }
 
     public function checkNameExisted(){

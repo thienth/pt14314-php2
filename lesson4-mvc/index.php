@@ -33,6 +33,10 @@ switch ($url) {
 		$ctr = new ProductController();
 		$ctr->checkNameExisted();
 		break;
+	case 'save-add-product':
+		$ctr = new ProductController();
+		$ctr->saveAdd();
+		break;
 	case 'add-product':
 		$ctr = new ProductController();
 		$ctr->addForm();

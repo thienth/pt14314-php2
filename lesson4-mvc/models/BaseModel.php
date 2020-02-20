@@ -10,6 +10,12 @@ class BaseModel{
                                         $dbusername, $dbpass);
     }
 
+    public function fill($dataArr){
+        foreach ($this->fillable as $col) {
+            $this->{$col} = $dataArr[$col];
+        }
+    }
+
     public static function getAll(){
         $model = new static();
         $sql = "select * from " . $model->table;

@@ -12,9 +12,6 @@
     </style>
 </head>
 <body>
-    <br>
-    <br>
-    <br>
     <div class="container">
         <form id="add-product-form" action="<?= BASE_URL . 'save-add-product'?>" method="post" enctype="multipart/form-data">
             <div class="row">
