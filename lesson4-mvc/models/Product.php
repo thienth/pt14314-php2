@@ -1,5 +1,6 @@
 <?php
-require_once './models/BaseModel.php';
+namespace Models;
+
 class Product extends BaseModel{
     public $table = 'products';
     protected $fillable = ['name', 'price', 'views',

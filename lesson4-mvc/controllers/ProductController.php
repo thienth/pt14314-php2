@@ -1,7 +1,7 @@
-<?php 
-
-require_once './models/Product.php';
-require_once './models/Category.php';
+<?php
+namespace Controllers;
+use Models\Product;
+use Models\Category;
 class ProductController{
 	public function detail(){
 		echo "Trang chi tiet san pham";
