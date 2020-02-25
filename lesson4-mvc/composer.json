@@ -1,0 +1,21 @@
+{
+    "name": "ginv2/lesson4-mvc",
+    "authors": [
+        {
+            "name": "thienth32",
+            "email": "thienth32@gmail.com"
+        }
+    ],
+    "require": {
+        "phroute/phroute": "^2.1",
+        "illuminate/database": "*",
+        "jenssegers/blade": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "controllers/",
+            "Models\\": "models/",
+            "Commons\\": "commons/"
+        }
+    }
+}
