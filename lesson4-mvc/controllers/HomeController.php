@@ -5,7 +5,9 @@ class HomeController{
 
 
 	public function index(){
-		$products = Product::getAll();
+//		$products = Product::all();
+		$products = Product::where('price', '>=', 1000)->get();
+//		dd($products);
 		include_once './views/home/index.php';
 	}
 
