@@ -33,7 +33,7 @@
                 <td><?php echo $pro->star ?></td>
                 <td>
                     <a href="<?= BASE_URL . "edit-product?id=$pro->id"?>" class="btn btn-sm btn-primary">Sửa</a> &nbsp;
-                    <a href="<?= BASE_URL . "remove-product?id=$pro->id"?>" class="btn btn-sm btn-danger btn-remove">Xóa</a>
+                    <a href="<?= BASE_URL . "products/remove/$pro->id"?>" class="btn btn-sm btn-danger btn-remove">Xóa</a>
                 </td>
             </tr>
         <?php endforeach;?>

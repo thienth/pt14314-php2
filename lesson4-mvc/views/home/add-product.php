@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container">
-        <form id="add-product-form" action="<?= BASE_URL . 'save-add-product'?>" method="post" enctype="multipart/form-data">
+        <form id="add-product-form" action="<?= BASE_URL . 'products/save-add'?>" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -100,7 +100,7 @@
                     required: true,
                     minlength: 2,
                     remote: {
-                        url: "<?= BASE_URL . 'check-product-name'?>",
+                        url: "<?= BASE_URL . 'products/check-name'?>",
                         type: "post",
                         data: {
                             name: function() {

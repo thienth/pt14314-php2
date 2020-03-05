@@ -7,26 +7,23 @@ class ProductController{
 		echo "Trang chi tiet san pham";
 	}
 
-	public function remove(){
-        // 1. lấy thông tin product id từ đường dẫn
-        $proid = isset($_GET['id']) ? $_GET['id'] : -1;
-        if($proid == -1){
+	public function remove($id){
+
+        // lấy ra sản phẩm dựa vào id
+        $product = Product::find($id);
+        if($product == null){
             header("location: " . BASE_URL . "?msg=id không tồn tại");
             die;
         }
 
-        // 2. thực hiện xóa
-        if(Product::destroy($proid)){
-            header("location: " . BASE_URL . "?msg=Xóa sản phẩm thành công!");
-            die;
-        }
-
-        header("location: " . BASE_URL . "?msg=Xóa không thành công!");
+        // xoá sản phẩm dựa vào id
+        Product::destroy($id);
+        header("location: " . BASE_URL . "?msg=Xóa thành công!");
         die;
     }
 
     public function addForm(){
-	    $cates = Category::getAll();
+	    $cates = Category::all();
 	    include_once './views/home/add-product.php';
     }
 
@@ -57,7 +54,7 @@ class ProductController{
         }
         $model->image = $filename;
         // lưu dữ liệu với csdl
-        $model->insert();
+        $model->save();
         header('location: ' . BASE_URL);
         die;
     }
@@ -90,12 +87,14 @@ class ProductController{
     public function checkNameExisted(){
 	    $name = $_POST['name'];
 	    $id = isset($_POST['id']) ? $_POST['id'] : -1;
-        $checkNameQuery = "select * from " . (new Product())->table . " where name = '$name'";
-        if($id != -1){
-            $checkNameQuery .= " and id != $id";
+	    $queryData = Product::where('name', $name);
+
+	    if($id != -1){
+	        $queryData->where('id', $id);
         }
-        $data = Product::customQuery($checkNameQuery);
-	    echo count($data) == 0 ? "true" : "false";
+        $numberRecord = $queryData->count();
+
+	    echo $numberRecord == 0 ? "true" : "false";
     }
 }
 
