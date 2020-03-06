@@ -9,11 +9,10 @@ class HomeController extends BaseController {
 		include_once './views/home/index.php';
 	}
 
-	public function demoLayout(){
+	public function dashboard(){
 
-	    $this->render('home.test-content', ['name' => 'thienth', 'age' => 30]);
+	    $this->render('admin.dashboard');
     }
-
 }
 
 
