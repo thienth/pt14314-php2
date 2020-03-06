@@ -90,7 +90,7 @@ class ProductController{
 	    $queryData = Product::where('name', $name);
 
 	    if($id != -1){
-	        $queryData->where('id', $id);
+	        $queryData->where('id', '!=', $id);
         }
         $numberRecord = $queryData->count();
 

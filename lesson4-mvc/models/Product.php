@@ -8,6 +8,15 @@ class Product extends Model{
     protected $attributes = [
         'image' => "public/images/default-image.jpg",
     ];
+
+    public function getCategoryName(){
+        $cate = Category::find($this->cate_id);
+        if($cate){
+            return $cate->cate_name;
+        }
+
+        return null;
+    }
 }
 
 
