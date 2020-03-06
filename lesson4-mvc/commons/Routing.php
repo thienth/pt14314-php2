@@ -26,6 +26,7 @@ class Routing
         $router->get('products/remove/{id}', ["Controllers\ProductController", "remove"]);
         $router->post('products/check-name', ["Controllers\ProductController", "checkNameExisted"]);
 
+        $router->get('demo-layout', ["Controllers\HomeController", "demoLayout"]);
 
         $dispatcher = new Dispatcher($router->getData());
 

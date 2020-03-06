@@ -2,7 +2,7 @@
 namespace Controllers;
 use Models\Product;
 use Models\Category;
-class ProductController{
+class ProductController extends BaseController {
 	public function detail(){
 		echo "Trang chi tiet san pham";
 	}
