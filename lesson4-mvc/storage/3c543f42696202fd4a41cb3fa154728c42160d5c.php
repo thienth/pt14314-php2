@@ -1,0 +1,2 @@
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Library/WebServer/Documents/pt14314-web/lesson4-mvc/views/admin/dashboard.blade.php ENDPATH**/ ?>
