@@ -14,7 +14,7 @@ class BaseController
     protected function render($viewPath, $dataArr = []){
         $blade = new Blade('views', 'storage');
 
-        echo $blade->make('homepage', ['name' => 'John Doe'])->render();
+        echo $blade->make($viewPath, $dataArr)->render();
     }
 
 }
