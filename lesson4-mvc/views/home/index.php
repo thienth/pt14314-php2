@@ -19,7 +19,7 @@
             <th>Price</th>
             <th>Star</th>
             <th>
-                <a href="<?= BASE_URL . "add-product"?>" class="btn btn-sm btn-success">Thêm</a>
+                <a href="<?= BASE_URL . "products/add-product"?>" class="btn btn-sm btn-success">Thêm</a>
             </th>
         </thead>
         <tbody>

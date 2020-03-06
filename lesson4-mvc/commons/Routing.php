@@ -19,11 +19,13 @@ class Routing
 
         $router->get('/', ["Controllers\HomeController", "index"]);
 
-        $router->get('add-product', ["Controllers\ProductController", "addForm"]);
+        $router->get('products/add-product', ["Controllers\ProductController", "addForm"]);
+        $router->post('products/save-add', ["Controllers\ProductController", "saveAdd"]);
+
         // {id} => tham số trên đường dẫn
         $router->get('products/remove/{id}', ["Controllers\ProductController", "remove"]);
         $router->post('products/check-name', ["Controllers\ProductController", "checkNameExisted"]);
-        $router->post('products/save-add', ["Controllers\ProductController", "saveAdd"]);
+
 
         $dispatcher = new Dispatcher($router->getData());
 

@@ -61,7 +61,7 @@ class ProductController{
 
     public function saveEdit(){
 	    $id = isset($_POST['id']) ? $_POST['id'] : -1;
-        $model = Product::findOne($id);
+        $model = Product::find($id);
         if(!$model){
             header("location: " . BASE_URL . "?msg=id không tồn tại");
             die;
@@ -79,7 +79,7 @@ class ProductController{
         }
         $model->image = $filename;
         // lưu dữ liệu với csdl
-        $model->update();
+        $model->save();
         header('location: ' . BASE_URL);
         die;
     }
