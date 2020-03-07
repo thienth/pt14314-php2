@@ -2,6 +2,7 @@
 namespace Controllers;
 use Models\Product;
 use Models\User;
+use Models\Category;
 class HomeController extends BaseController {
 
 
@@ -12,10 +13,13 @@ class HomeController extends BaseController {
 
 	public function dashboard(){
         $totalUser = User::count();
-        
-	    $this->render('admin.dashboard', [
-	        'userCount' => $totalUser
+        $totalCategory = Category::count();
+        $totalProduct = Product::count();
 
+	    $this->render('admin.dashboard', [
+	        'userCount' => $totalUser,
+            'cateCount' => $totalCategory,
+            'proCount' => $totalProduct
         ]);
     }
 }

@@ -68,5 +68,8 @@
 <!-- ./wrapper -->
 
 @include('layouts._share.script')
+
+@yield('js')
+
 </body>
 </html>

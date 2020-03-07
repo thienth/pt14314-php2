@@ -3,8 +3,12 @@ namespace Controllers;
 use Models\Product;
 use Models\Category;
 class ProductController extends BaseController {
-	public function detail(){
-		echo "Trang chi tiet san pham";
+	public function index(){
+		// 1. Lấy toàn bộ sản phẩm
+        $products = Product::all();
+        $this->render('product.index', [
+            'products' => $products
+        ]);
 	}
 
 	public function remove($id){

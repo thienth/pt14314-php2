@@ -68,6 +68,9 @@
 <!-- ./wrapper -->
 
 <?php echo $__env->make('layouts._share.script', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+
+<?php echo $__env->yieldContent('js'); ?>
+
 </body>
 </html>
 <?php /**PATH /Library/WebServer/Documents/pt14314-web/lesson4-mvc/views/layouts/admin.blade.php ENDPATH**/ ?>

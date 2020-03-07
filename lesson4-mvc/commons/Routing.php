@@ -19,6 +19,7 @@ class Routing
 
         $router->get('/', ["Controllers\HomeController", "index"]);
 
+        $router->get('products', ["Controllers\ProductController", "index"]);
         $router->get('products/add-product', ["Controllers\ProductController", "addForm"]);
         $router->post('products/save-add', ["Controllers\ProductController", "saveAdd"]);
 
