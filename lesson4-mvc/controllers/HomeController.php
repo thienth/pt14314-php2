@@ -1,6 +1,7 @@
 <?php
 namespace Controllers;
 use Models\Product;
+use Models\User;
 class HomeController extends BaseController {
 
 
@@ -10,8 +11,12 @@ class HomeController extends BaseController {
 	}
 
 	public function dashboard(){
+        $totalUser = User::count();
+        
+	    $this->render('admin.dashboard', [
+	        'userCount' => $totalUser
 
-	    $this->render('admin.dashboard');
+        ]);
     }
 }
 

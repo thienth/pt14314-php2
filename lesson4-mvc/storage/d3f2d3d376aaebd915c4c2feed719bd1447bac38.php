@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <base href="<?php echo e(ADMIN_ASSET_URL); ?>">
 
-  <title>AdminLTE 3 | Dashboard</title>
+  <title><?php echo $__env->yieldContent('title', "Fpoly - PT14314-web"); ?></title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <?php echo $__env->make('layouts._share.style', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
