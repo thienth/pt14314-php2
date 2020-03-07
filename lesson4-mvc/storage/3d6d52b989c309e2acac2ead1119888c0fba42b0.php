@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cập nhật thông tin sản phẩm</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <style>
-        .form-group label.error{
-            color: indianred;
-        }
-        .main-content{
-            margin-top: 100px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container main-content">
-        <h3>Cập nhật thông tin sản phẩm</h3>
-        <form id="edit-product-form" action="<?= BASE_URL . 'save-edit-product'?>" method="post" enctype="multipart/form-data">
+<?php $__env->startSection('content'); ?>
+        <form id="edit-product-form" action="<?= BASE_URL . 'products/save-edit'?>" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $product->id?>">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Tên sản phẩm<span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control"
@@ -56,7 +38,7 @@
                         <textarea name="short_desc" class="form-control" rows="5"><?= $product->short_desc?></textarea>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
                             <img src="<?= BASE_URL . $product->image ?>" class="img-fluid" id="img-preview">
@@ -79,18 +61,12 @@
                 </div>
                 <div class="col-12 d-flex justify-content-end">
                     <button type="submit" class="btn btn-sm btn-primary">Cập nhật</button>&nbsp;
-                    <a href="<?= BASE_URL ?>" class="btn btn-sm btn-danger">Hủy</a>
+                    <a href="<?= BASE_URL . 'products'?>" class="btn btn-sm btn-danger">Hủy</a>
                 </div>
             </div>
         </form>
-    </div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 <script>
     function encodeImageFileAsURL(element) {
         var file = element.files[0];
@@ -117,7 +93,7 @@
                     required: true,
                     minlength: 2,
                     remote: {
-                        url: "<?= BASE_URL . 'check-product-name'?>",
+                        url: "<?= BASE_URL . 'products/check-name'?>",
                         type: "post",
                         data: {
                             name: function() {
@@ -172,5 +148,5 @@
         });
     });
 </script>
-</body>
-</html>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Library/WebServer/Documents/pt14314-web/lesson4-mvc/views/product/edit.blade.php ENDPATH**/ ?>

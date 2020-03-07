@@ -1,50 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thêm sản phẩm</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <style>
-        .form-group label.error{
-            color: indianred;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <form id="add-product-form" action="<?= BASE_URL . 'products/save-add'?>" method="post" enctype="multipart/form-data">
+@extends('layouts.admin')
+@section('content')
+        <form id="edit-product-form" action="<?= BASE_URL . 'products/save-edit'?>" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $product->id?>">
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="">Tên sản phẩm<span class="text-danger">*</span></label>
-                        <input type="text" name="name" class="form-control" placeholder="Nhập tên sản phẩm">
+                        <input type="text" name="name" class="form-control"
+                               value="<?= $product->name?>"
+                               placeholder="Nhập tên sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="">Danh mục sản phẩm</label>
                         <select name="cate_id" class="form-control">
                             <?php foreach ($cates as $ca):?>
-                            <option value="<?= $ca->id ?>"><?= $ca->cate_name?></option>
+                            <option
+                                    <?php if($ca->id == $product->cate_id):?>
+                                        selected
+                                    <?php endif?>
+                                    value="<?= $ca->id ?>"><?= $ca->cate_name?></option>
                             <?php endforeach;?>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="">Giá sản phẩm<span class="text-danger">*</span></label>
-                        <input type="number" name="price" class="form-control" placeholder="Nhập giá sản phẩm">
+                        <input type="number" name="price" class="form-control"
+                               value="<?= $product->price?>"
+                               placeholder="Nhập giá sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="">Số lượng views</label>
-                        <input type="number" name="views" class="form-control" placeholder="Nhập số lượt xem sản phẩm">
+                        <input type="number" name="views" class="form-control"
+                               value="<?= $product->views?>"
+                               placeholder="Nhập số lượt xem sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="">Mô tả ngắn</label>
-                        <textarea name="short_desc" class="form-control" rows="5"></textarea>
+                        <textarea name="short_desc" class="form-control" rows="5"><?= $product->short_desc?></textarea>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-6 offset-md-3">
-                            <img src="<?= DEFAULT_IMAGE ?>" class="img-fluid" id="img-preview">
+                            <img src="<?= BASE_URL . $product->image ?>" class="img-fluid" id="img-preview">
                         </div>
                     </div>
                     <div class="form-group">
@@ -53,32 +51,28 @@
                     </div>
                     <div class="form-group">
                         <label for="">Số sao</label>
-                        <input type="number" step="0.1" name="star" class="form-control" >
+                        <input type="number" name="star"
+                               value="<?= $product->star?>"
+                               class="form-control" >
                     </div>
                     <div class="form-group">
                         <label for="">Chi tiết</label>
-                        <textarea name="detail" class="form-control" rows="7"></textarea>
+                        <textarea name="detail" class="form-control" rows="7"><?= $product->detail ?></textarea>
                     </div>
                 </div>
                 <div class="col-12 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-sm btn-primary">Tạo</button>&nbsp;
-                    <a href="<?= BASE_URL ?>" class="btn btn-sm btn-danger">Hủy</a>
+                    <button type="submit" class="btn btn-sm btn-primary">Cập nhật</button>&nbsp;
+                    <a href="<?= BASE_URL . 'products'?>" class="btn btn-sm btn-danger">Hủy</a>
                 </div>
             </div>
         </form>
-    </div>
-
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.min.js"></script>
+@endsection
+@section('js')
 <script>
     function encodeImageFileAsURL(element) {
         var file = element.files[0];
         if(file === undefined){
-            $("#img-preview").attr("src", "<?= DEFAULT_IMAGE ?>");
+            $("#img-preview").attr("src", "<?= BASE_URL . $product->image ?>");
             return false;
         }
         var reader = new FileReader();
@@ -94,7 +88,7 @@
         // views: ko bắt buộc nhập, phải là số, không âm
         // star: ko bắt buộc nhập, phải là số, không âm, nằm trong khoảng 0-5
         // ảnh sản phẩm: bắt buộc nhập, chỉ chấp nhận định dạng ảnh
-        $('#add-product-form').validate({
+        $('#edit-product-form').validate({
             rules:{
                 name: {
                     required: true,
@@ -105,6 +99,9 @@
                         data: {
                             name: function() {
                                 return $( "input[name='name']" ).val();
+                            },
+                            id: function(){
+                                return $( "input[name='id']" ).val();
                             }
                         }
                     }
@@ -119,11 +116,10 @@
                     min: 0
                 },
                 star: {
-                    number: true,
-                    min: 0
+                    min: 0,
+                    max: 5
                 },
                 image: {
-                    required: true,
                     extension: "jpg|png|jpeg|gif"
                 }
             },
@@ -143,16 +139,14 @@
                     min: "Không nhập số âm"
                 },
                 star: {
-                    number: "Yêu cầu nhập số",
+                    max: "Star không lớn hơn 5",
                     min: "Không nhập số âm"
                 },
                 image: {
-                    required: "Hãy chọn ảnh sản phẩm",
                     extension: "Hãy chọn file định dạng ảnh (jpg|png|jpeg|gif)"
                 }
             }
         });
     });
 </script>
-</body>
-</html>
+@endsection

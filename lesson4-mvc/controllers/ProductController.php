@@ -16,32 +16,38 @@ class ProductController extends BaseController {
         // lấy ra sản phẩm dựa vào id
         $product = Product::find($id);
         if($product == null){
-            header("location: " . BASE_URL . "?msg=id không tồn tại");
+            header("location: " . BASE_URL . "products?msg=id không tồn tại");
             die;
         }
 
         // xoá sản phẩm dựa vào id
         Product::destroy($id);
-        header("location: " . BASE_URL . "?msg=Xóa thành công!");
+        header("location: " . BASE_URL . "products?msg=Xóa thành công!");
         die;
     }
 
     public function addForm(){
+
 	    $cates = Category::all();
-	    include_once './views/home/add-product.php';
+
+	    $this->render('product.add', [
+	        'cates' => $cates
+        ]);
     }
 
-    public function editForm(){
-	    $cates = Category::getAll();
-	    $id = isset($_GET['id']) ? $_GET['id'] : -1;
+    public function editForm($id){
+	    $cates = Category::all();
 	    // lấy ra dữ liệu của sản phẩm theo id
-        $product = Product::findOne($id);
+        $product = Product::find($id);
         if(!$product){
-            header("location: " . BASE_URL . "?msg=id không tồn tại");
+            header("location: " . BASE_URL . "products?msg=id không tồn tại");
             die;
         }
 
-	    include_once './views/home/edit-product.php';
+        $this->render('product.edit', [
+            'cates' => $cates,
+            'product' => $product
+        ]);
     }
 
     public function saveAdd(){
@@ -59,7 +65,7 @@ class ProductController extends BaseController {
         $model->image = $filename;
         // lưu dữ liệu với csdl
         $model->save();
-        header('location: ' . BASE_URL);
+        header('location: ' . BASE_URL . 'products');
         die;
     }
 
@@ -67,7 +73,7 @@ class ProductController extends BaseController {
 	    $id = isset($_POST['id']) ? $_POST['id'] : -1;
         $model = Product::find($id);
         if(!$model){
-            header("location: " . BASE_URL . "?msg=id không tồn tại");
+            header("location: " . BASE_URL . "products?msg=id không tồn tại");
             die;
         }
 
@@ -84,7 +90,7 @@ class ProductController extends BaseController {
         $model->image = $filename;
         // lưu dữ liệu với csdl
         $model->save();
-        header('location: ' . BASE_URL);
+        header('location: ' . BASE_URL . 'products');
         die;
     }
 

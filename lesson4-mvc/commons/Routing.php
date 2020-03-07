@@ -21,7 +21,9 @@ class Routing
 
         $router->get('products', ["Controllers\ProductController", "index"]);
         $router->get('products/add-product', ["Controllers\ProductController", "addForm"]);
+        $router->get('products/edit/{id}', ["Controllers\ProductController", "editForm"]);
         $router->post('products/save-add', ["Controllers\ProductController", "saveAdd"]);
+        $router->post('products/save-edit', ["Controllers\ProductController", "saveEdit"]);
 
         // {id} => tham số trên đường dẫn
         $router->get('products/remove/{id}', ["Controllers\ProductController", "remove"]);
