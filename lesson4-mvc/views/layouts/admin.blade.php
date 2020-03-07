@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <base href="{{ADMIN_ASSET_URL}}">
 
-  <title>AdminLTE 3 | Dashboard</title>
+  <title>@yield('title', "Fpoly - PT14314-web")</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   @include('layouts._share.style')
